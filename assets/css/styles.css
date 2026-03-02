@@ -115,8 +115,12 @@ section {
 .ph-hover {
   position: relative;
   cursor: default;
-  padding: 0.5rem 0;
-  margin: -0.5rem 0;
+}
+
+.ph-hover::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem -0.5rem;
 }
 
 .ph-text {
