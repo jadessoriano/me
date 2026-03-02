@@ -1,6 +1,8 @@
 // Spotify Integration via Vercel serverless function
 
-var SPOTIFY_API = '/api/spotify';
+var SPOTIFY_API = window.location.hostname.includes('github.io')
+  ? 'https://me-two-mauve.vercel.app/api/spotify'
+  : '/api/spotify';
 
 function timeAgo(date) {
   var seconds = Math.floor((new Date() - date) / 1000);
