@@ -115,6 +115,8 @@ section {
 .ph-hover {
   position: relative;
   cursor: default;
+  padding: 0.5rem 0;
+  margin: -0.5rem 0;
 }
 
 .ph-text {
