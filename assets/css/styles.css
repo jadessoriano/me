@@ -129,7 +129,16 @@ section {
 /* PHP elePHPant hover */
 .php-hover {
   position: relative;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.php-hover:hover {
+  color: var(--text);
 }
 
 .php-hover::before {
