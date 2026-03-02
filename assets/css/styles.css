@@ -114,7 +114,14 @@ section {
 
 .ph-hover {
   position: relative;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+
+.ph-hover:hover {
+  color: var(--text);
 }
 
 .ph-hover::before {
