@@ -39,7 +39,7 @@
 
     <section class="intro">
       <a href="https://www.google.com/search?q=philippines" target="_blank" rel="noopener" class="ph-hover">Hi! I'm Jade, a software engineer based in the <span class="ph-text">Philippines</span>.<img class="ph-img" src="https://www.google.com/logos/doodles/2017/philippine-independence-day-6281205090615296-2x.jpg" alt="Philippines" /></a>
-      <p class="php-hover">I started out building web applications with <strong class="php-text">PHP</strong> and <strong>Laravel</strong>, working my way through the full stack. Over the years I moved into <strong>React</strong> and <strong>TypeScript</strong>, eventually picking up <strong>Rust</strong> and <strong>Tauri</strong> to build desktop tools that feel native.<svg class="elephpant" viewBox="0 0 100 80" width="48" height="38" fill="none" style="transform:scaleX(-1)">
+      <p class="php-hover">I started out building web applications with <strong class="php-text">PHP</strong> and <strong>Laravel</strong>, working my way through the full stack. Over the years I moved into <strong>React</strong> and <strong>TypeScript</strong>, eventually picking up <strong>Rust</strong> and <strong>Tauri</strong> to build desktop tools that feel native.<span class="elephpant"><span class="elephpant-wrap"><svg viewBox="0 0 100 80" width="48" height="38" fill="none" style="transform:scaleX(-1)">
           <g fill="#777BB3">
             <!-- body -->
             <ellipse cx="50" cy="35" rx="28" ry="20"/>
@@ -61,7 +61,7 @@
           <line class="leg leg-fr" x1="44" y1="50" x2="44" y2="68" stroke="#777BB3" stroke-width="5" stroke-linecap="round"/>
           <line class="leg leg-bl" x1="56" y1="50" x2="56" y2="68" stroke="#777BB3" stroke-width="5" stroke-linecap="round"/>
           <line class="leg leg-br" x1="66" y1="50" x2="66" y2="68" stroke="#777BB3" stroke-width="5" stroke-linecap="round"/>
-        </svg></p>
+        </svg></span></span></p>
       <p>These days I spend most of my time shipping products across the stack — designing systems, writing frontends, and wiring up backends. I like working in small teams where you touch everything.</p>
       <p>Outside of code, I spend my time hiking trails, discovering music, and occasionally writing about all of the above.</p>
     </section>
@@ -249,8 +249,35 @@
         osc.stop(t + 0.6);
       }
 
-      phpHover.addEventListener('mouseenter', playTrumpet);
-      phpHover.addEventListener('mouseleave', function() { trumpeted = false; });
+      var elephant = document.querySelector('.elephpant');
+      var walkFrame = null;
+      var startTime = null;
+      var duration = 8000;
+
+      function walkStep(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = (timestamp - startTime) / duration;
+        if (progress > 1) progress = 1;
+        var parentWidth = phpHover.offsetWidth;
+        var pos = -50 + progress * (parentWidth + 80);
+        elephant.style.left = pos + 'px';
+        if (progress < 1) {
+          walkFrame = requestAnimationFrame(walkStep);
+        }
+      }
+
+      phpHover.addEventListener('mouseenter', function() {
+        playTrumpet();
+        startTime = null;
+        elephant.style.left = '-50px';
+        elephant.classList.add('visible');
+        walkFrame = requestAnimationFrame(walkStep);
+      });
+      phpHover.addEventListener('mouseleave', function() {
+        trumpeted = false;
+        elephant.classList.remove('visible');
+        if (walkFrame) cancelAnimationFrame(walkFrame);
+      });
     })();
   </script>
 </body>
