@@ -249,8 +249,20 @@
         osc.stop(t + 0.6);
       }
 
-      phpHover.addEventListener('mouseenter', playTrumpet);
+      var elephant = document.querySelector('.elephpant');
+
+      phpHover.addEventListener('mouseenter', function() {
+        playTrumpet();
+        if (!elephant.classList.contains('walking')) {
+          elephant.classList.add('walking');
+        }
+      });
       phpHover.addEventListener('mouseleave', function() { trumpeted = false; });
+      elephant.addEventListener('animationend', function(e) {
+        if (e.animationName === 'walk-right') {
+          elephant.classList.remove('walking');
+        }
+      });
     })();
   </script>
 </body>
