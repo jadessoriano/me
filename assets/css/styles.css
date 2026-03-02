@@ -117,6 +117,15 @@ section {
   cursor: default;
 }
 
+.ph-text {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.ph-hover:hover .ph-text {
+  color: #f5c518;
+  text-shadow: 0 0 8px rgba(245, 197, 24, 0.5), 0 0 20px rgba(245, 197, 24, 0.25);
+}
+
 .ph-img {
   position: absolute;
   bottom: calc(100% + 8px);
