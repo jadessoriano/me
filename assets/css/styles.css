@@ -151,20 +151,20 @@ section {
   bottom: 100%;
   right: calc(100% + 2rem);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
   pointer-events: none;
   overflow: visible;
 }
 
-.elephpant.walking {
+.php-hover:hover .elephpant {
   opacity: 1;
   animation: walk-right 8s linear forwards;
 }
 
-.elephpant.walking .leg-fl { animation: leg-swing 0.4s ease-in-out infinite alternate; }
-.elephpant.walking .leg-fr { animation: leg-swing 0.4s ease-in-out infinite alternate-reverse; }
-.elephpant.walking .leg-bl { animation: leg-swing 0.4s ease-in-out infinite alternate-reverse; }
-.elephpant.walking .leg-br { animation: leg-swing 0.4s ease-in-out infinite alternate; }
+.php-hover:hover .leg-fl { animation: leg-swing 0.4s ease-in-out infinite alternate; }
+.php-hover:hover .leg-fr { animation: leg-swing 0.4s ease-in-out infinite alternate-reverse; }
+.php-hover:hover .leg-bl { animation: leg-swing 0.4s ease-in-out infinite alternate-reverse; }
+.php-hover:hover .leg-br { animation: leg-swing 0.4s ease-in-out infinite alternate; }
 
 @keyframes walk-right {
   0% { right: calc(100% + 2rem); }
