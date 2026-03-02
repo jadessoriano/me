@@ -141,5 +141,35 @@
     </footer>
   </main>
   <script src="assets/js/spotify.js"></script>
+  <script>
+    (function() {
+      var ph = document.querySelector('.ph-hover');
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var played = false;
+
+      function playChime() {
+        if (played) return;
+        played = true;
+
+        var notes = [523.25, 659.25, 783.99];
+        notes.forEach(function(freq, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.12);
+          gain.gain.linearRampToValueAtTime(0.08, ctx.currentTime + i * 0.12 + 0.05);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.6);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + i * 0.12);
+          osc.stop(ctx.currentTime + i * 0.12 + 0.6);
+        });
+      }
+
+      ph.addEventListener('mouseenter', playChime);
+      ph.addEventListener('mouseleave', function() { played = false; });
+    })();
+  </script>
 </body>
 </html>
