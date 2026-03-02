@@ -295,14 +295,15 @@ a:hover {
 
 /* Now playing */
 .now-playing {
-  display: block;
+  display: flex;
+  gap: 1rem;
   background: var(--track-bg);
   border-radius: 8px;
-  padding: 1.25rem;
-  position: relative;
+  padding: 1rem;
   text-decoration: none;
   color: var(--text);
   transition: opacity 0.15s ease;
+  align-items: center;
 }
 
 .now-playing:hover {
@@ -310,43 +311,129 @@ a:hover {
   opacity: 0.8;
 }
 
-.track-info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.15rem 0.75rem;
+.album-art-wrap {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.album-art.loaded {
+  display: block;
+}
+
+.album-art.loaded + .album-art-placeholder {
+  display: none;
+}
+
+.album-art-placeholder {
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.track-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.track-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
   margin-bottom: 0.5rem;
 }
 
-.listen-meta {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.15rem 0.75rem;
+.track-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.label {
+.artist-name {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-name {
   font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-bottom {
+  margin-bottom: 0.35rem;
+}
+
+.progress-bar {
+  height: 3px;
+  background: var(--divider);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.track-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.listen-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listen-status {
+  font-size: 0.7rem;
   font-family: 'IBM Plex Mono', monospace;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  align-self: center;
-}
-
-.value {
-  font-size: 0.9rem;
-  align-self: center;
-}
-
-.track-name {
-  font-weight: 500;
 }
 
 .spotify-icon {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  color: var(--text-secondary);
-  opacity: 0.5;
+  color: #1DB954;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+@media (max-width: 500px) {
+  .album-art-wrap {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 /* Writing page */

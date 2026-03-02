@@ -1,5 +1,4 @@
 // Spotify Integration via Vercel serverless function
-// Credentials are stored as Vercel environment variables — not in this file.
 
 var SPOTIFY_API = '/api/spotify';
 
@@ -14,6 +13,13 @@ function timeAgo(date) {
   return days + 'd ago';
 }
 
+function formatMs(ms) {
+  var totalSeconds = Math.floor(ms / 1000);
+  var minutes = Math.floor(totalSeconds / 60);
+  var seconds = totalSeconds % 60;
+  return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+}
+
 async function updateNowPlaying() {
   try {
     var response = await fetch(SPOTIFY_API);
@@ -24,12 +30,34 @@ async function updateNowPlaying() {
 
     var trackEl = document.querySelector('.track-name');
     var artistEl = document.querySelector('.artist-name');
+    var albumEl = document.querySelector('.album-name');
     var statusEl = document.querySelector('.listen-status');
     var linkEl = document.querySelector('.now-playing-link');
+    var artEl = document.querySelector('.album-art');
+    var progressEl = document.querySelector('.progress-fill');
+    var currentTimeEl = document.querySelector('.time-current');
+    var durationEl = document.querySelector('.time-duration');
 
     if (trackEl) trackEl.textContent = data.track;
     if (artistEl) artistEl.textContent = data.artist;
+    if (albumEl) albumEl.textContent = data.album || '';
 
+    // Album art
+    if (artEl && data.albumArt) {
+      artEl.src = data.albumArt;
+      artEl.alt = data.album || data.track;
+      artEl.onload = function() { artEl.classList.add('loaded'); };
+    }
+
+    // Progress bar and time
+    if (data.durationMs) {
+      var progress = data.progressMs ? (data.progressMs / data.durationMs) * 100 : 0;
+      if (progressEl) progressEl.style.width = progress + '%';
+      if (currentTimeEl) currentTimeEl.textContent = formatMs(data.progressMs || 0);
+      if (durationEl) durationEl.textContent = formatMs(data.durationMs);
+    }
+
+    // Status
     if (statusEl) {
       if (data.isPlaying) {
         statusEl.textContent = 'Now playing';
