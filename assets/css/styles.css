@@ -112,6 +112,36 @@ section {
   margin-bottom: 0;
 }
 
+.stack-hover {
+  position: relative;
+  cursor: default;
+}
+
+.stack-hover::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem -0.5rem;
+}
+
+.stack-img {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.stack-hover:hover .stack-img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ph-hover {
   position: relative;
   cursor: pointer;
