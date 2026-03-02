@@ -47,6 +47,7 @@
             <circle cx="24" cy="28" r="16"/>
             <!-- ear -->
             <ellipse cx="10" cy="30" rx="12" ry="16"/>
+            <ellipse cx="10" cy="30" rx="8" ry="12" fill="#9B9ED8" opacity="0.6"/>
             <!-- trunk -->
             <path d="M10 34 Q4 42 6 52 Q8 54 10 52 Q9 44 14 38Z"/>
             <!-- tail -->
@@ -219,6 +220,38 @@
       });
     })();
 
+    // Elephant trumpet sound
+    (function() {
+      var phpHover = document.querySelector('.php-hover');
+      var trumpeted = false;
+
+      function playTrumpet() {
+        if (trumpeted) return;
+        trumpeted = true;
+        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+        var t = ctx.currentTime;
+
+        // Trumpet: rising pitch with vibrato
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(200, t);
+        osc.frequency.linearRampToValueAtTime(600, t + 0.15);
+        osc.frequency.linearRampToValueAtTime(500, t + 0.3);
+        osc.frequency.linearRampToValueAtTime(700, t + 0.5);
+        gain.gain.setValueAtTime(0, t);
+        gain.gain.linearRampToValueAtTime(0.06, t + 0.05);
+        gain.gain.setValueAtTime(0.06, t + 0.35);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.6);
+      }
+
+      phpHover.addEventListener('mouseenter', playTrumpet);
+      phpHover.addEventListener('mouseleave', function() { trumpeted = false; });
+    })();
   </script>
 </body>
 </html>
