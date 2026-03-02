@@ -126,6 +126,26 @@ section {
   color: var(--text);
 }
 
+/* PHP elePHPant hover */
+.php-hover {
+  position: relative;
+  cursor: default;
+}
+
+.php-hover::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem -0.5rem;
+}
+
+.php-text {
+  transition: color 0.3s ease;
+}
+
+.php-hover:hover .php-text {
+  color: #777BB3;
+}
+
 .ph-hover::before {
   content: '';
   position: absolute;
