@@ -139,8 +139,11 @@ section {
 }
 
 .php-text {
+  transition: color 0.3s ease;
+}
+
+.php-hover:hover .php-text {
   color: #777BB3;
-  font-weight: 600;
 }
 
 .elephpant {
