@@ -114,19 +114,18 @@ section {
 
 .ph-hover {
   position: relative;
-  font-weight: 500;
   cursor: default;
 }
 
 .ph-img {
   position: absolute;
   bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) scale(0.9);
+  left: 0;
   width: 220px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   opacity: 0;
+  transform: translateY(4px);
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 10;
@@ -134,7 +133,7 @@ section {
 
 .ph-hover:hover .ph-img {
   opacity: 1;
-  transform: translateX(-50%) scale(1);
+  transform: translateY(0);
 }
 
 strong {
