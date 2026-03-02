@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writing — Jade Soriano</title>
+  <title>Writing | Jade Soriano</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>~</text></svg>">
 
-  <meta name="description" content="Writing by Jade Soriano — tech, hiking, and more.">
+  <meta name="description" content="Writing by Jade Soriano. Tech, hiking, and more.">
 
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -31,63 +31,53 @@
     </div>
 
     <ul class="writing-list">
-      <li id="tauri-v2" class="writing-item" data-category="tech" data-title="Building desktop apps with Tauri v2">
+      <li id="agent-flow" class="writing-item" data-category="tech" data-title="Building AgentFlow with Tauri v2">
         <div class="writing-meta">
           <time>Mar 2026</time>
           <span class="writing-category">tech</span>
         </div>
-        <h3>Building desktop apps with Tauri v2</h3>
-        <p class="writing-snippet">Tauri v2 brings a Rust-powered backend with a tiny footprint. I walk through building a cross-platform desktop app from scratch...</p>
+        <h3>Building AgentFlow with Tauri v2</h3>
+        <p class="writing-snippet">How I built a visual pipeline builder for Claude Code agents using Tauri v2, React Flow, and Rust...</p>
         <template class="writing-body">
-          <p>Tauri v2 brings a Rust-powered backend with a tiny footprint. I walk through building a cross-platform desktop app from scratch, covering IPC, plugin system, and how it compares to Electron in real-world use.</p>
-          <h4>Why Tauri?</h4>
-          <p>If you've ever shipped an Electron app, you know the pain — <strong>200 MB+ bundles</strong>, high memory usage, and a Chromium instance per window. Tauri flips this by using the system webview and a Rust backend.</p>
+          <p>AgentFlow is a desktop app for visually building, managing, and running Claude Code agent pipelines. I built it with Tauri v2, and here's what I learned shipping a real Rust + React desktop app.</p>
+          <h4>What it does</h4>
+          <p>The core idea is simple: a <strong>drag-and-drop canvas</strong> where you wire together AI tasks, shell commands, git operations, and approval gates into executable pipelines. Think of it as a visual orchestration layer for Claude Code.</p>
           <ul>
-            <li>Final binary size: <strong>~8 MB</strong> vs Electron's 200 MB+</li>
-            <li>Memory usage: <strong>~30 MB</strong> idle vs 150 MB+</li>
-            <li>Native OS integration via Rust plugins</li>
+            <li><strong>6 node types:</strong> AI Task, Shell, Git, Parallel, Approval Gate, Sub-pipeline</li>
+            <li><strong>One-click execution</strong> with real-time status animations and streaming logs</li>
+            <li><strong>Cost tracking</strong> with per-node token estimates in USD, budget limits, and a cost dashboard</li>
+            <li><strong>Resume from failure</strong> so you can pick up where a pipeline broke without re-running everything</li>
           </ul>
-          <h4>Getting started</h4>
-          <p>The v2 CLI scaffolds a project with your frontend framework of choice. I used <strong>React + TypeScript</strong> with Vite, but Svelte, Vue, and Solid all work out of the box.</p>
-          <p>The IPC layer lets your frontend invoke Rust functions directly — type-safe and fast. No more REST APIs between your UI and backend logic.</p>
+          <h4>The stack</h4>
+          <p>Tauri v2 made this feasible as a solo project. The frontend is <strong>React 19 + TypeScript</strong> with React Flow for the canvas editor and Zustand for state. The backend is <strong>Rust with Tokio</strong> for async pipeline execution and SQLite for persistence.</p>
+          <p>The IPC layer is the best part. The frontend invokes Rust functions directly, type-safe and fast. No HTTP server, no serialization overhead. Pipelines are stored as JSON in <code>.claude/pipelines/</code> and auto-generate <code>.claude/agents/*.md</code> files, so everything stays compatible with the Claude Code CLI.</p>
+          <h4>Lessons learned</h4>
+          <p>Tauri's tiny footprint is real. The final binary is <strong>~8 MB</strong> versus Electron's 200 MB+. But the tradeoff is maturity: you'll write more Rust plumbing yourself. For a project like this where the backend <em>is</em> the product, that's actually a feature.</p>
+          <p>Interested? Check out <a href="https://agent-flow-site.vercel.app/" target="_blank" rel="noopener">the AgentFlow site</a> for docs and downloads.</p>
         </template>
       </li>
 
-      <li id="zustand-vs-redux" class="writing-item" data-category="tech" data-title="Zustand vs Redux in 2026">
+      <li id="testgap" class="writing-item" data-category="tech" data-title="Testgap: AI-powered test gap finder">
         <div class="writing-meta">
           <time>Feb 2026</time>
           <span class="writing-category">tech</span>
         </div>
-        <h3>Zustand vs Redux in 2026</h3>
-        <p class="writing-snippet">A practical comparison of Zustand and Redux Toolkit for modern React apps. When to reach for each, performance tradeoffs...</p>
+        <h3>Testgap: AI-powered test gap finder</h3>
+        <p class="writing-snippet">A Rust CLI that scans your codebase for untested functions and uses Claude to suggest what tests to write...</p>
         <template class="writing-body">
-          <p>A practical comparison of Zustand and Redux Toolkit for modern React apps. When to reach for each, performance tradeoffs, and why I switched most of my projects to Zustand.</p>
-          <h4>The case for Zustand</h4>
-          <p>Zustand's API is <strong>remarkably simple</strong> — a single <code>create()</code> call gives you a store with no providers, no reducers, no action types. For most apps, this is all you need.</p>
-          <h4>When Redux still wins</h4>
-          <p>Redux Toolkit shines when you need <strong>middleware pipelines</strong>, time-travel debugging, or strict action logging. If your team is large and you want enforced patterns, RTK is still the safer bet.</p>
-          <p>For everything else — side projects, small teams, fast iteration — Zustand gets out of the way and lets you <em>just write code</em>.</p>
-        </template>
-      </li>
-
-      <li id="mt-pulag" class="writing-item" data-category="hiking" data-title="Mt. Pulag at sunrise">
-        <div class="writing-meta">
-          <time>Feb 2026</time>
-          <span class="writing-category">hiking</span>
-        </div>
-        <h3>Mt. Pulag at sunrise</h3>
-        <p class="writing-snippet">Catching the sea of clouds at Luzon's highest peak. A guide to the Ambangeg trail, what to pack for freezing temps...</p>
-        <template class="writing-body">
-          <p>Catching the sea of clouds at Luzon's highest peak. A guide to the Ambangeg trail, what to pack for freezing temps, and why this sunrise is worth the 2 AM start.</p>
-          <h4>The trail</h4>
-          <p>The <strong>Ambangeg trail</strong> is the easiest of the three routes — a well-maintained path through mossy forest that takes about 3-4 hours to summit. You start the hike around <strong>2 AM</strong> to catch sunrise.</p>
-          <h4>What to bring</h4>
+          <p>Testgap is a CLI tool I built in Rust that scans your codebase for untested functions and uses Claude AI to suggest what tests to write first. It's the tool I wished existed every time I joined a project with spotty coverage.</p>
+          <h4>How it works</h4>
+          <p>Under the hood, testgap uses <strong>tree-sitter</strong> to parse function definitions across your codebase, then maps them against existing test files to find gaps. Each untested function gets a severity classification:</p>
           <ul>
-            <li>Thermal base layer — temps drop to <strong>0-5&deg;C</strong> at the summit</li>
-            <li>Headlamp with fresh batteries</li>
-            <li>Hot water in a thermos (you'll thank yourself later)</li>
+            <li><strong>Critical:</strong> public functions with high complexity</li>
+            <li><strong>Warning:</strong> public functions with low complexity</li>
+            <li><strong>Info:</strong> private/internal functions</li>
           </ul>
-          <p>When the clouds part and the <em>sea of clouds</em> stretches below you at golden hour, every shivering minute is worth it.</p>
+          <h4>AI-powered suggestions</h4>
+          <p>The real value comes when you enable the AI layer. Testgap sends untested functions to Claude and gets back <strong>risk assessments</strong> and concrete test suggestions, so you know not just <em>what</em> to test but <em>how</em>. You can also run <code>--no-ai</code> for free static analysis only.</p>
+          <h4>Built for CI</h4>
+          <p>Testgap outputs in human-readable, JSON, and Markdown formats. Use <code>--fail-on-critical</code> as a CI gate to catch untested public APIs before they ship. It supports <strong>Rust, TypeScript, Python, and Go</strong> out of the box.</p>
+          <p>Check out <a href="https://testgap-site.vercel.app/" target="_blank" rel="noopener">the Testgap site</a> for docs and installation.</p>
         </template>
       </li>
 
@@ -97,53 +87,156 @@
           <span class="writing-category">tech</span>
         </div>
         <h3>Pipeline orchestration patterns</h3>
-        <p class="writing-snippet">Patterns I've found useful when building multi-step agent pipelines — from simple sequential flows to conditional branching...</p>
+        <p class="writing-snippet">Lessons from building AgentFlow's execution engine. The patterns that worked, the ones that didn't, and why agent pipelines are different...</p>
         <template class="writing-body">
-          <p>Patterns I've found useful when building multi-step agent pipelines — from simple sequential flows to conditional branching and parallel execution with retry logic.</p>
-          <h4>Sequential pipelines</h4>
-          <p>The simplest pattern: <strong>A &rarr; B &rarr; C</strong>. Each node runs after the previous one completes. Good for deterministic workflows where order matters.</p>
-          <h4>Conditional branching</h4>
-          <p>Add decision nodes that route to different paths based on output. Think of it like an <code>if/else</code> — the pipeline evaluates a condition and picks a branch.</p>
-          <h4>Parallel with join</h4>
-          <p>Fan out to <strong>multiple nodes simultaneously</strong>, then join results at a sync point. This is where you get real speed gains — especially when calling external APIs that can run concurrently.</p>
+          <p>While building <a href="https://agent-flow-site.vercel.app/" target="_blank" rel="noopener">AgentFlow</a>, I had to figure out how to orchestrate multi-step AI workflows reliably. These are the patterns that survived contact with real use.</p>
+          <h4>Sequential chains</h4>
+          <p>The simplest pattern: <strong>A &rarr; B &rarr; C</strong>. Each node runs after the previous one completes. This works well for deterministic workflows like running tests, then lint, then deploy. But with LLM nodes, the output of step A shapes what step B even <em>means</em>, so you need to think carefully about what context flows between nodes.</p>
+          <h4>Parallel fan-out with join</h4>
+          <p>Fan out to <strong>multiple nodes simultaneously</strong>, then collect results at a sync point. This is where real speed gains come from. In AgentFlow, a Parallel node spins up concurrent tasks via Tokio and waits for all branches to resolve before continuing. The tricky part is deciding what to do when one branch fails. Do you cancel the others, or let them finish?</p>
+          <h4>Approval gates</h4>
+          <p>Not every step should run automatically. Approval gates pause execution and wait for <strong>human review</strong> before continuing. I use these before destructive operations. A pipeline might generate a migration, but a human should confirm before it runs <code>DROP TABLE</code>. The gate stores the pending state so you can close your laptop and approve later.</p>
+          <h4>Resume from failure</h4>
+          <p>This is the pattern I'm most glad I built. When a node fails, the pipeline saves its state: which nodes completed, their outputs, where it broke. You fix the issue and <strong>resume from the failed node</strong> without re-running everything before it. With LLM calls that cost real money, re-running a 10-step pipeline because step 8 hit a rate limit is painful.</p>
+          <h4>Cost-aware execution</h4>
+          <p>Agent pipelines aren't free. Each AI Task node has a <strong>per-node token cost estimate</strong>, and the execution engine tracks spend in real time. You can set budget limits so if a pipeline is about to blow past its cap, it stops early instead of burning through your API credits. This turned out to be one of the most-used features.</p>
+          <h4>What's different about agent pipelines</h4>
+          <p>Traditional orchestration (Airflow, Step Functions) assumes deterministic tasks. Agent pipelines are different: outputs are <strong>non-deterministic</strong>, a single node might stream tokens for 30 seconds, and context window limits mean you can't just pass everything forward. Designing for this means smaller nodes with explicit context boundaries, and treating retries as <em>new attempts</em> rather than replays.</p>
         </template>
       </li>
 
-      <li id="batad" class="writing-item" data-category="hiking" data-title="Batad rice terraces trail">
+      <li id="memory-md" class="writing-item" data-category="tech" data-title="MEMORY.md doesn't scale. Here's what does">
         <div class="writing-meta">
-          <time>Dec 2025</time>
+          <time>Jan 2026</time>
+          <span class="writing-category">tech</span>
+        </div>
+        <h3>MEMORY.md doesn't scale. Here's what does</h3>
+        <p class="writing-snippet">Claude Code loads MEMORY.md into every conversation, but truncates after 200 lines. One big file means lost context...</p>
+        <template class="writing-body">
+          <p>Claude Code loads <code>MEMORY.md</code> into every conversation, but truncates after 200 lines. One big file = lost context.</p>
+          <p>The fix is simple: break it into topic files. Keep <code>MEMORY.md</code> as a lean index that links out to detailed files.</p>
+          <pre><code>~/.claude/project-path/memory/
+  MEMORY.md                   → index (under 200 lines)
+  plan-phases.md              → 9-phase implementation plan
+  architecture-decisions.md
+  docker-infra.md
+  deferred-items.md</code></pre>
+          <p>Claude loads the index every time, then reads topic files only when relevant. No truncation, no wasted context.</p>
+          <h4>Why this works</h4>
+          <p>Same idea as <code>.claude/agents/</code>. A small markdown file that gives Claude exactly what it needs. <strong>Structure > bulk.</strong> The index tells Claude what exists and where to find it. The topic files hold the real detail (architecture decisions, infrastructure notes, deferred work) without competing for those 200 lines.</p>
+          <h4>Get started</h4>
+          <p>Just ask Claude: <em>"Break my MEMORY.md into topic files. Keep the main file as an index under 200 lines, and move detailed sections into separate .md files in the same memory directory."</em></p>
+        </template>
+      </li>
+
+      <li id="montalban" class="writing-item" data-category="hiking" data-title="Montalban Adventure">
+        <div class="writing-meta">
+          <time>Jan 2026</time>
           <span class="writing-category">hiking</span>
         </div>
-        <h3>Batad rice terraces trail</h3>
-        <p class="writing-snippet">Trekking through the 2,000-year-old Ifugao rice terraces in Batad. The trail from the saddle point, Tappiyah Falls...</p>
+        <h3>Montalban Adventure</h3>
+        <p class="writing-snippet">Three mountains in a day. The Montalban Trilogy was muddy, steep, and sharp, but the view on top made all of it worth it...</p>
         <template class="writing-body">
-          <p>Trekking through the 2,000-year-old Ifugao rice terraces in Batad. The trail from the saddle point, Tappiyah Falls, and staying with a local family overnight.</p>
-          <h4>Getting there</h4>
-          <p>From Banaue, it's a <strong>45-minute jeepney ride</strong> to the saddle point, then a steep descent into the amphitheater-shaped village of Batad. The terraces wrap around you in every direction.</p>
-          <h4>Tappiyah Falls</h4>
-          <p>A 1-hour trail from the village leads to <strong>Tappiyah Falls</strong> — a 21-meter cascade surrounded by jungle. The pool at the base is freezing but the perfect reward after the hike down.</p>
-          <p>Staying overnight with a <em>local Ifugao family</em> is the best way to experience Batad. Home-cooked meals, stories about the terraces, and a stillness you won't find anywhere else.</p>
+          <img class="writing-photo" src="assets/images/montalban.jpg" alt="Montalban Trilogy hike" />
+          <p>We did the Montalban Trilogy: <strong>Mt. Binacayan</strong>, <strong>Mt. Pamitinan</strong>, and <strong>Mt. Hapunang Banoi</strong>, all three summits in a single day. It's in Rodriguez, Rizal, about an hour from Manila.</p>
+          <h4>The climb</h4>
+          <p>It was challenging. There's a lot of uphill bouldering over limestone, long steep ascents that don't let up, and the rocks are <em>sharp</em>. You feel it in your hands as much as your legs. It rained a bit too, which made the trail muddy and slippery on some sections.</p>
+          <p>But the view from the top was really worth it. You can see the whole valley stretching out, Wawa Dam below, and if you're lucky, a sea of clouds rolling through in the morning.</p>
+          <h4>The junction</h4>
+          <p>Between the summits there's a junction where we took a quick rest. Everyone just sat on the rocks, caught their breath, drank water, and looked at each other like "we're really doing all three." Then we kept going.</p>
+          <h4>Would I do it again?</h4>
+          <p>Absolutely. It's not a beginner trail, but if you've done a few hikes before, the Trilogy is doable in a day. Just bring gloves for the bouldering, wear pants you don't mind getting muddy, and start early.</p>
         </template>
       </li>
 
-      <li id="mt-ulap" class="writing-item" data-category="hiking" data-title="Overnight at Mt. Ulap">
+      <li id="jira-to-pr" class="writing-item" data-category="tech" data-title="Automating Jira to PR with a markdown file">
+        <div class="writing-meta">
+          <time>Dec 2025</time>
+          <span class="writing-category">tech</span>
+        </div>
+        <h3>Automating Jira to PR with a markdown file</h3>
+        <p class="writing-snippet">Create your own custom Claude Code agent that takes a Jira ticket and delivers a ready-to-merge PR. It's just a markdown file...</p>
+        <template class="writing-body">
+          <p>Create your own custom agent that takes a Jira ticket and delivers a ready-to-merge PR, end to end. The entire thing is a markdown file in <code>.claude/agents/</code>.</p>
+          <p>Here's the gist of mine:</p>
+          <pre><code># Ticket-to-PR Agent
+
+Complete development pipeline: takes a Jira
+ticket and delivers a ready-to-merge PR.
+
+## Full Pipeline
+Jira Ticket &rarr; Worktree &rarr; Implement
+&rarr; Test &rarr; Fix &rarr; Changelog
+&rarr; Commit &rarr; Sync Develop &rarr; Push &rarr; PR
+
+## Phase 1: Setup
+- Parse input (Jira key, URL, or description)
+- Fetch ticket details via Atlassian MCP
+- Create worktree from latest develop
+
+## Phase 2: Implement
+- Plan before coding
+- Follow project conventions
+- Write tests (Pest / Vitest)
+
+## Phase 3: Ship
+- Run tests, fix failures
+- Update CHANGELOG.md
+- Commit, merge latest develop, push, open PR</code></pre>
+          <p>I just type <code>ticket-to-pr ML-305</code> in Claude Code and it handles everything: fetching the Jira ticket, scaffolding, implementation, tests, and PR submission.</p>
+          <h4>Why this works</h4>
+          <p>Claude Code agents are just markdown instructions. No framework, no SDK, no build step. You describe the workflow in plain English with enough specificity (branch naming conventions, test commands, commit message format) and the agent follows it. The file lives in your repo, so your whole team gets it on <code>git pull</code>.</p>
+          <h4>Get started</h4>
+          <p>To create your own, just ask Claude: <em>"Create a custom agent in <code>.claude/agents/</code> that [describe your workflow]."</em> Use the structure above as a starting point. The key is being explicit about your project's conventions (directory structure, test framework, commit format) so the agent produces code that looks like yours.</p>
+        </template>
+      </li>
+
+      <li id="mt-pulag" class="writing-item" data-category="hiking" data-title="Mt. Pulag at sunrise">
         <div class="writing-meta">
           <time>Nov 2025</time>
           <span class="writing-category">hiking</span>
         </div>
-        <h3>Overnight at Mt. Ulap</h3>
-        <p class="writing-snippet">The grassland ridges of Mt. Ulap make for one of the most photogenic day hikes near Baguio. Notes on the Ampucao trail...</p>
+        <h3>Mt. Pulag at sunrise</h3>
+        <p class="writing-snippet">My first major hike. Catching the sea of clouds at Luzon's highest peak, and the strangers who became friends along the way...</p>
         <template class="writing-body">
-          <p>The grassland ridges of Mt. Ulap make for one of the most photogenic day hikes near Baguio. Notes on the Ampucao trail, camping setup, and the golden hour views.</p>
-          <h4>The Ampucao trail</h4>
-          <p>Starting from <strong>Brgy. Ampucao</strong> in Itogon, the trail takes about 4-5 hours one way. You pass through pine forests, open grasslands, and rocky ridgelines with panoramic views of the Cordillera.</p>
-          <h4>Camping at the summit</h4>
+          <video class="writing-video" src="assets/videos/pulag.mp4" controls playsinline preload="metadata"></video>
+          <p>This was my first major hike, and honestly, it ruined me for regular weekends.</p>
+          <p><a href="https://www.google.com/search?q=mt.+pulag" target="_blank" rel="noopener">Mt. Pulag</a> is Luzon's highest peak at <strong>2,922 meters</strong>. You hike through mossy forest in the dark, starting around 2 AM, freezing and half-awake. Then the sun breaks through a sea of clouds and suddenly none of that matters.</p>
+          <h4>The people made it</h4>
+          <p>The trail itself is beautiful, but it's the people I remember most. Strangers at the homestay the night before became friends by the time we hit the summit. We shared stories over instant coffee, cracked jokes on the trail when our legs were giving out, and passed around whatever food anyone had left. Someone had a thermos of hot chocolate that became the most valuable thing on the mountain.</p>
+          <p>There's something about shivering together at 3 AM on a dirt trail that fast-tracks a friendship.</p>
+          <h4>The trail</h4>
+          <p>We took the <strong>Ambangeg trail</strong>, the most accessible of the three routes. It's a well-maintained path, about 3-4 hours to summit. Not technical, but the cold and the altitude make it real enough.</p>
+          <h4>What to bring</h4>
           <ul>
-            <li>Flat camping area near the summit marker</li>
-            <li>No water source — bring at least <strong>3 liters</strong></li>
-            <li>Wind picks up after dark — stake your tent well</li>
+            <li>Thermal base layer, since temps drop to <strong>0-5&deg;C</strong> at the summit</li>
+            <li>Headlamp with fresh batteries</li>
+            <li>Hot water in a thermos (you'll thank yourself later)</li>
+            <li>Extra food to share. It's the best icebreaker</li>
           </ul>
-          <p>Golden hour at Ulap is <em>unreal</em> — the ridges glow amber and the cloud formations over Benguet are endlessly layered.</p>
+          <p>When the clouds parted and the <em>sea of clouds</em> stretched out below us at golden hour, everyone just stood there, quiet for the first time all night. That moment alone was worth every shivering minute.</p>
+        </template>
+      </li>
+
+      <li id="cawag-hexa" class="writing-item" data-category="hiking" data-title="Exploring the Six Mountains at Cawag Hexa">
+        <div class="writing-meta">
+          <time>Nov 2025</time>
+          <span class="writing-category">hiking</span>
+        </div>
+        <h3>Exploring the Six Mountains at Cawag Hexa</h3>
+        <p class="writing-snippet">25+ kilometers across six mountains in Subic, Zambales. This trail is unforgiving, and I loved every minute of it...</p>
+        <template class="writing-body">
+          <img class="writing-photo" src="assets/images/cawag.jpg" alt="Cawag Hexa trail" />
+          <p>The Cawag Hexa is six mountains in one day: <strong>Mt. Balingkilat</strong>, <strong>Mt. Bira-Bira</strong>, <strong>Mt. Naulaw</strong>, <strong>Mt. Dayungan</strong>, <strong>Mt. Cinco Picos</strong>, and <strong>Mt. Redondo</strong>. Over 25 kilometers of trail in Subic, Zambales. This trail is unforgiving.</p>
+          <h4>The first attempt</h4>
+          <p>My first time, I didn't finish. We made it past the second mountain, Mt. Bira-Bira, but by then I'd run out of water and it was damn hot at the top. We stopped at the <strong>Thinking Tree</strong>, this spot on the trail that literally makes you think about whether you want to keep going. We decided not to. Took what they call the "Cawag Exit" and showed ourselves the way out.</p>
+          <h4>The revenge hike</h4>
+          <p>The second time, I finished it. We started at <strong>3:00 AM</strong> and I didn't reach the end until around <strong>8:00 PM</strong>. Almost 17 hours on the trail.</p>
+          <p>The first mountain is a full assault. Long, steep, and it doesn't let up. You're already working hard before sunrise. But after that, each mountain gives you something different. Different terrain, different views, different kind of tired.</p>
+          <h4>The fourth mountain</h4>
+          <p>Mt. Dayungan was the one that got to me. Same level of difficulty as the first, maybe worse because your legs are already gone by that point. And the fake peaks. You'd think you've reached the top, then there's another one. And another one. Feels like it never ends. I lost count of how many times I thought "okay, <em>this</em> is it" and it wasn't.</p>
+          <h4>The finish</h4>
+          <p>At the end of the trail there's a river. I couldn't enjoy it because it was already dark by the time I got there. But honestly, just finishing was the reward. Each mountain is unique and gives you a completely different experience. I was so happy I came back and completed it the second time around.</p>
         </template>
       </li>
     </ul>
@@ -165,22 +258,36 @@
 
   <script>
     // Filters
+    function applyFilter(filter) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-filter') === filter);
+      });
+      document.querySelectorAll('.writing-item').forEach(function(item) {
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.removeAttribute('data-hidden');
+        } else {
+          item.setAttribute('data-hidden', 'true');
+        }
+      });
+    }
+
     document.querySelectorAll('.filter-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         var filter = this.getAttribute('data-filter');
-        document.querySelectorAll('.filter-btn').forEach(function(b) {
-          b.classList.remove('active');
-        });
-        this.classList.add('active');
-        document.querySelectorAll('.writing-item').forEach(function(item) {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-            item.removeAttribute('data-hidden');
-          } else {
-            item.setAttribute('data-hidden', 'true');
-          }
-        });
+        applyFilter(filter);
+        var url = new URL(window.location);
+        if (filter === 'all') {
+          url.searchParams.delete('filter');
+        } else {
+          url.searchParams.set('filter', filter);
+        }
+        history.replaceState(null, '', url);
       });
     });
+
+    // Restore filter from URL
+    var savedFilter = new URL(window.location).searchParams.get('filter');
+    if (savedFilter) applyFilter(savedFilter);
 
     // Modal
     var modal = document.getElementById('modal');
@@ -189,8 +296,17 @@
 
     function closeModal() {
       modal.classList.remove('open');
-      history.replaceState(null, '', window.location.pathname);
+      var url = new URL(window.location);
+      url.hash = '';
+      history.replaceState(null, '', url.pathname + url.search);
     }
+
+    // Mark previously visited posts on load
+    var visited = JSON.parse(localStorage.getItem('visited-posts') || '[]');
+    visited.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.add('visited');
+    });
 
     document.querySelectorAll('.writing-item').forEach(function(item) {
       item.addEventListener('click', function() {
@@ -198,7 +314,17 @@
         var tpl = this.querySelector('.writing-body');
         modalBody.innerHTML = tpl ? tpl.innerHTML : '';
         modal.classList.add('open');
-        history.replaceState(null, '', '#' + this.id);
+        var url = new URL(window.location);
+        url.hash = this.id;
+        history.replaceState(null, '', url.pathname + url.search + '#' + this.id);
+
+        // Track as visited
+        this.classList.add('visited');
+        var v = JSON.parse(localStorage.getItem('visited-posts') || '[]');
+        if (v.indexOf(this.id) === -1) {
+          v.push(this.id);
+          localStorage.setItem('visited-posts', JSON.stringify(v));
+        }
       });
     });
 

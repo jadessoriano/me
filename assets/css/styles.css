@@ -6,6 +6,30 @@
   box-sizing: border-box;
 }
 
+/* Minimal scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--divider) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--divider);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
 :root {
   --bg: #f5f5f4;
   --text: #1c1917;
@@ -144,8 +168,17 @@ section {
 
 .hike-hover {
   position: relative;
-  cursor: default;
+  cursor: pointer;
   font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--link);
+  transition: color 0.15s ease;
+}
+
+.hike-hover:hover {
+  color: #4a8a35;
 }
 
 .hike-img {
@@ -169,8 +202,17 @@ section {
 
 .music-hover {
   position: relative;
-  cursor: default;
+  cursor: pointer;
   font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--link);
+  transition: color 0.15s ease;
+}
+
+.music-hover:hover {
+  color: #1DB954;
 }
 
 .music-img {
@@ -229,6 +271,9 @@ section {
 
 .php-text {
   transition: color 0.3s ease;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .php-hover:hover .php-text {
@@ -285,6 +330,9 @@ section {
 
 .ph-text {
   transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .pixie-dust {
@@ -511,6 +559,18 @@ a:hover {
   font-size: 0.8rem;
   color: var(--text-secondary);
   font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Now playing border glow */
+.now-playing.glow {
+  animation: border-glow 4s ease;
+}
+
+@keyframes border-glow {
+  0% { box-shadow: 0 0 0 0 transparent; }
+  10% { box-shadow: 0 0 12px 3px var(--text-secondary); }
+  50% { box-shadow: 0 0 12px 3px var(--text-secondary); }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 /* Now playing */
@@ -775,6 +835,14 @@ a:hover {
   display: none;
 }
 
+.writing-item.visited {
+  opacity: 0.55;
+}
+
+.writing-item.visited:hover {
+  opacity: 0.7;
+}
+
 .writing-meta {
   display: flex;
   align-items: baseline;
@@ -898,6 +966,36 @@ a:hover {
   line-height: 1.6;
   color: var(--text-secondary);
   margin-bottom: 0.2rem;
+}
+
+.modal-body pre {
+  background: var(--track-bg);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 0.6rem;
+  overflow-x: auto;
+}
+
+.modal-body pre code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text-secondary);
+}
+
+.modal-body .writing-video,
+.modal-body .writing-photo {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.modal-body .writing-photo {
+  object-fit: cover;
+  max-height: 300px;
 }
 
 .modal-body code {
