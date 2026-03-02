@@ -58,13 +58,33 @@ async function updateNowPlaying() {
       };
     }
 
-    // Pulse ambient glow when playing
-    if (ambientEl) {
+    // Ripple effect when playing
+    var ripples = document.querySelectorAll('.ripple');
+    ripples.forEach(function(r) {
       if (data.isPlaying) {
-        ambientEl.classList.add('playing');
+        r.classList.add('active');
       } else {
-        ambientEl.classList.remove('playing');
+        r.classList.remove('active');
       }
+    });
+
+    // Extract accent color for ripple from album art
+    if (artEl && data.albumArt && data.isPlaying) {
+      try {
+        var canvas = document.createElement('canvas');
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+          canvas.width = 1;
+          canvas.height = 1;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, 1, 1);
+          var px = ctx.getImageData(0, 0, 1, 1).data;
+          var color = 'rgba(' + px[0] + ',' + px[1] + ',' + px[2] + ',0.5)';
+          ripples.forEach(function(r) { r.style.setProperty('--ripple-color', color); });
+        };
+        img.src = data.albumArt;
+      } catch (e) {}
     }
 
     // Progress bar and time

@@ -562,30 +562,37 @@ a:hover {
   opacity: 0.6;
 }
 
-.album-art-ambient.playing {
-  animation: ambient-pulse 1.5s ease-in-out infinite;
+.album-art-wrap .ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
 }
 
-@keyframes ambient-pulse {
-  0%, 100% {
-    opacity: 0.5;
-    filter: blur(16px) saturate(1.5);
+.album-art-wrap .ripple.active {
+  animation: ripple-out 2s ease-out infinite;
+}
+
+.album-art-wrap .ripple-2.active {
+  animation-delay: 0.7s;
+}
+
+.album-art-wrap .ripple-3.active {
+  animation-delay: 1.4s;
+}
+
+@keyframes ripple-out {
+  0% {
     transform: scale(1);
+    opacity: 0.5;
+    box-shadow: 0 0 0 0 var(--ripple-color, rgba(120, 120, 120, 0.4));
   }
-  25% {
-    opacity: 0.75;
-    filter: blur(14px) saturate(1.8);
-    transform: scale(1.06);
-  }
-  50% {
-    opacity: 0.55;
-    filter: blur(18px) saturate(1.6);
-    transform: scale(1.02);
-  }
-  75% {
-    opacity: 0.7;
-    filter: blur(13px) saturate(1.9);
-    transform: scale(1.08);
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+    box-shadow: 0 0 12px 6px var(--ripple-color, rgba(120, 120, 120, 0.4));
   }
 }
 
