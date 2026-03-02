@@ -130,7 +130,6 @@ section {
 .php-hover {
   position: relative;
   cursor: default;
-  overflow: hidden;
 }
 
 .php-hover::before {
@@ -146,7 +145,7 @@ section {
 
 .elephpant {
   position: absolute;
-  top: 0.05rem;
+  bottom: 100%;
   right: calc(100% + 2rem);
   opacity: 0;
   transition: opacity 0.3s ease;
