@@ -44,11 +44,18 @@ async function updateNowPlaying() {
     if (artistEl) artistEl.textContent = data.artist;
     if (albumEl) albumEl.textContent = data.album || '';
 
-    // Album art
+    // Album art + ambient glow
+    var ambientEl = document.querySelector('.album-art-ambient');
     if (artEl && data.albumArt) {
       artEl.src = data.albumArt;
       artEl.alt = data.album || data.track;
-      artEl.onload = function() { artEl.classList.add('loaded'); };
+      artEl.onload = function() {
+        artEl.classList.add('loaded');
+        if (ambientEl) {
+          ambientEl.src = data.albumArt;
+          ambientEl.onload = function() { ambientEl.classList.add('loaded'); };
+        }
+      };
     }
 
     // Progress bar and time
