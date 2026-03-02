@@ -118,6 +118,8 @@ section {
   text-decoration: none;
   color: var(--text);
   display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
 }
 
 .ph-hover:hover {
