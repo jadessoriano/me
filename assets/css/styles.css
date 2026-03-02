@@ -121,6 +121,27 @@ section {
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
+.pixie-dust {
+  position: absolute;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 4px #ffd700, 0 0 8px rgba(255, 215, 0, 0.4);
+  pointer-events: none;
+  animation: dust-float ease-out forwards;
+  z-index: 20;
+}
+
+@keyframes dust-float {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0);
+  }
+}
+
 .ph-hover:hover .ph-text {
   color: #ffd700;
   text-shadow: 0 0 6px rgba(255, 215, 0, 0.6), 0 0 16px rgba(255, 215, 0, 0.4), 0 0 32px rgba(255, 215, 0, 0.2);

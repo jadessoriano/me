@@ -167,7 +167,29 @@
         });
       }
 
-      ph.addEventListener('mouseenter', playChime);
+      function spawnDust(e) {
+        var rect = ph.getBoundingClientRect();
+        for (var i = 0; i < 6; i++) {
+          var dot = document.createElement('span');
+          dot.className = 'pixie-dust';
+          dot.style.left = (e.clientX - rect.left + (Math.random() - 0.5) * 30) + 'px';
+          dot.style.top = (e.clientY - rect.top + (Math.random() - 0.5) * 20) + 'px';
+          dot.style.setProperty('--dx', (Math.random() - 0.5) * 40 + 'px');
+          dot.style.setProperty('--dy', -(Math.random() * 30 + 10) + 'px');
+          dot.style.animationDuration = (0.5 + Math.random() * 0.4) + 's';
+          dot.style.width = dot.style.height = (2 + Math.random() * 3) + 'px';
+          ph.appendChild(dot);
+          dot.addEventListener('animationend', function() { this.remove(); });
+        }
+      }
+
+      ph.addEventListener('mouseenter', function(e) {
+        playChime();
+        spawnDust(e);
+      });
+      ph.addEventListener('mousemove', function(e) {
+        if (Math.random() > 0.6) spawnDust(e);
+      });
       ph.addEventListener('mouseleave', function() { played = false; });
     })();
   </script>
