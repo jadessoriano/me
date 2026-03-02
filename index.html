@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jade Soriano — Software Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>~</text></svg>">
+
+  <meta name="description" content="Jade Soriano is a software engineer who writes about tech, goes hiking, and listens to a lot of music.">
+  <meta property="og:title" content="Jade Soriano — Software Engineer">
+  <meta property="og:description" content="Software engineer. Writes about tech, hiking, and music.">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="header-row">
+        <div>
+          <h1>Jade Soriano</h1>
+          <p class="subtitle">Software Engineer</p>
+        </div>
+        <a class="cv-btn" href="assets/Jade_Soriano_Resume.pdf" download title="Download CV">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          CV
+        </a>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p>Hi! I'm Jade, a software engineer based in the Philippines.</p>
+      <p>I started out building web applications with <strong>PHP</strong> and <strong>Laravel</strong>, working my way through the full stack. Over the years I moved into <strong>React</strong> and <strong>TypeScript</strong>, eventually picking up <strong>Rust</strong> and <strong>Tauri</strong> to build desktop tools that feel native.</p>
+      <p>These days I spend most of my time shipping products across the stack — designing systems, writing frontends, and wiring up backends. I like working in small teams where you touch everything.</p>
+      <p>Outside of code, I spend my time hiking trails, discovering music, and occasionally writing about all of the above.</p>
+    </section>
+
+<section class="writing">
+      <h2>Writing</h2>
+      <div class="divider"></div>
+
+      <div class="posts-grid">
+        <div class="post-column">
+          <h3>Tech</h3>
+          <ul class="post-list">
+            <li>
+              <a href="writing.html#tauri-v2">Building desktop apps with Tauri v2</a>
+              <time>Mar 2026</time>
+            </li>
+            <li>
+              <a href="writing.html#zustand-vs-redux">Zustand vs Redux in 2026</a>
+              <time>Feb 2026</time>
+            </li>
+            <li>
+              <a href="writing.html#pipeline-patterns">Pipeline orchestration patterns</a>
+              <time>Jan 2026</time>
+            </li>
+          </ul>
+        </div>
+
+        <div class="post-column">
+          <h3>Hiking</h3>
+          <ul class="post-list">
+            <li>
+              <a href="writing.html#mt-pulag">Mt. Pulag at sunrise</a>
+              <time>Feb 2026</time>
+            </li>
+            <li>
+              <a href="writing.html#batad">Batad rice terraces trail</a>
+              <time>Dec 2025</time>
+            </li>
+            <li>
+              <a href="writing.html#mt-ulap">Overnight at Mt. Ulap</a>
+              <time>Nov 2025</time>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <a href="writing.html" class="view-all">View all posts &rarr;</a>
+    </section>
+
+    <section class="listening">
+      <h2>Listening to</h2>
+      <div class="divider"></div>
+      <a class="now-playing now-playing-link" href="#" target="_blank" rel="noopener">
+        <div class="track-info">
+          <span class="label">Track</span>
+          <span class="value track-name">The Manifesto</span>
+          <span class="label">Artist</span>
+          <span class="value artist-name">Gorillaz</span>
+        </div>
+        <div class="listen-meta">
+          <span class="label">Status</span>
+          <span class="value listen-status">Recently played</span>
+        </div>
+        <svg class="spotify-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+        </svg>
+      </a>
+    </section>
+
+    <section class="elsewhere">
+      <h2>Elsewhere</h2>
+      <div class="divider"></div>
+      <p>
+        Find me on
+        <a href="https://github.com/jadessoriano" target="_blank" rel="noopener">GitHub</a>,
+        <a href="https://www.linkedin.com/in/jadessoriano" target="_blank" rel="noopener">LinkedIn</a>,
+        or <a href="mailto:jadesiguasoriano@gmail.com">send me an email</a>.
+      </p>
+    </section>
+
+    <footer>
+      <div class="divider"></div>
+      <p>&copy; Jade Soriano, 2026</p>
+    </footer>
+  </main>
+  <script src="assets/js/spotify.js"></script>
+</body>
+</html>
