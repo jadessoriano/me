@@ -130,6 +130,7 @@ section {
 .php-hover {
   position: relative;
   cursor: default;
+  overflow: hidden;
 }
 
 .php-hover::before {
@@ -139,11 +140,32 @@ section {
 }
 
 .php-text {
-  transition: color 0.3s ease;
+  color: #777BB3;
+  font-weight: 600;
 }
 
-.php-hover:hover .php-text {
-  color: #777BB3;
+.elephpant {
+  position: absolute;
+  top: -0.15rem;
+  left: -1.5rem;
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.php-hover:hover .elephpant {
+  opacity: 1;
+  animation: walk-across 3s linear forwards;
+}
+
+@keyframes walk-across {
+  0% {
+    left: -1.5rem;
+  }
+  100% {
+    left: calc(100% + 1.5rem);
+  }
 }
 
 .ph-hover::before {
