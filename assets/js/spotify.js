@@ -58,6 +58,15 @@ async function updateNowPlaying() {
       };
     }
 
+    // Pulse ambient glow when playing
+    if (ambientEl) {
+      if (data.isPlaying) {
+        ambientEl.classList.add('playing');
+      } else {
+        ambientEl.classList.remove('playing');
+      }
+    }
+
     // Progress bar and time
     if (data.durationMs) {
       var progress = data.progressMs ? (data.progressMs / data.durationMs) * 100 : 0;
