@@ -37,23 +37,18 @@
           <span class="writing-category">tech</span>
         </div>
         <h3>Building AgentFlow with Tauri v2</h3>
-        <p class="writing-snippet">How I built a visual pipeline builder for Claude Code agents using Tauri v2, React Flow, and Rust...</p>
+        <p class="writing-snippet">You can automate AI tasks with a markdown file. Here's why I built a visual tool anyway...</p>
         <template class="writing-body">
-          <p>AgentFlow is a desktop app for visually building, managing, and running Claude Code agent pipelines. I built it with Tauri v2, and here's what I learned shipping a real Rust + React desktop app.</p>
-          <h4>What it does</h4>
-          <p>The core idea is simple: a <strong>drag-and-drop canvas</strong> where you wire together AI tasks, shell commands, git operations, and approval gates into executable pipelines. Think of it as a visual orchestration layer for Claude Code.</p>
-          <ul>
-            <li><strong>6 node types:</strong> AI Task, Shell, Git, Parallel, Approval Gate, Sub-pipeline</li>
-            <li><strong>One-click execution</strong> with real-time status animations and streaming logs</li>
-            <li><strong>Cost tracking</strong> with per-node token estimates in USD, budget limits, and a cost dashboard</li>
-            <li><strong>Resume from failure</strong> so you can pick up where a pipeline broke without re-running everything</li>
-          </ul>
+          <p>Running <code>claude --agent agents/my-workflow.md</code> works. It's simple and it gets the job done. But after using markdown-based agents on real projects, I kept running into the same problems: failed steps meant restarting the whole thing, cost tracking was invisible until the bill showed up, teammates couldn't read the markdown syntax, and parallel execution needed bash scripting workarounds.</p>
+          <p>So I built AgentFlow. A desktop app that lets you do the same thing visually.</p>
+          <h4>Why visual?</h4>
+          <p>Each step is a block on a canvas. While it's running, you can see exactly what's happening: <strong>blue for running, green for completed, red for failed</strong>. When something breaks, you don't restart from scratch. You fix the issue and resume from the failed step.</p>
+          <p>Token usage and dollar amounts are tracked per step with budget limits, so you know what a workflow costs <em>while</em> it's running, not after. Approval gates let you pause execution for human review before continuing. And parallel processing is just drag-and-drop, no scripting needed.</p>
+          <h4>Who it's for</h4>
+          <p>It's for anyone who's been frustrated by restarting failed runs, teams with mixed technical backgrounds where not everyone reads markdown, and people who want visibility into what their AI workflows are actually doing and costing.</p>
           <h4>The stack</h4>
-          <p>Tauri v2 made this feasible as a solo project. The frontend is <strong>React 19 + TypeScript</strong> with React Flow for the canvas editor and Zustand for state. The backend is <strong>Rust with Tokio</strong> for async pipeline execution and SQLite for persistence.</p>
-          <p>The IPC layer is the best part. The frontend invokes Rust functions directly, type-safe and fast. No HTTP server, no serialization overhead. Pipelines are stored as JSON in <code>.claude/pipelines/</code> and auto-generate <code>.claude/agents/*.md</code> files, so everything stays compatible with the Claude Code CLI.</p>
-          <h4>Lessons learned</h4>
-          <p>Tauri's tiny footprint is real. The final binary is <strong>~8 MB</strong> versus Electron's 200 MB+. But the tradeoff is maturity: you'll write more Rust plumbing yourself. For a project like this where the backend <em>is</em> the product, that's actually a feature.</p>
-          <p>Interested? Check out <a href="https://agent-flow-site.vercel.app/" target="_blank" rel="noopener">the AgentFlow site</a> for docs and downloads.</p>
+          <p>Built with <strong>Tauri v2</strong> (Rust backend), <strong>React 19 + TypeScript</strong>, Tailwind CSS, React Flow for the canvas, SQLite for local storage, and Tokio for async operations. The final binary is ~8 MB. It's MIT-licensed and open source.</p>
+          <p>I wrote a longer post about this on <a href="https://dev.to/jadessoriano/you-can-automate-ai-tasks-with-a-markdown-file-heres-why-i-built-a-visual-tool-anyway-405a" target="_blank" rel="noopener">dev.to</a>. You can also check out <a href="https://agent-flow-site.vercel.app/" target="_blank" rel="noopener">the AgentFlow site</a> for docs and downloads.</p>
         </template>
       </li>
 
