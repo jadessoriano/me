@@ -108,19 +108,29 @@
         <h3>MEMORY.md doesn't scale. Here's what does</h3>
         <p class="writing-snippet">Claude Code loads MEMORY.md into every conversation, but truncates after 200 lines. One big file means lost context...</p>
         <template class="writing-body">
-          <p>Claude Code loads <code>MEMORY.md</code> into every conversation, but truncates after 200 lines. One big file = lost context.</p>
-          <p>The fix is simple: break it into topic files. Keep <code>MEMORY.md</code> as a lean index that links out to detailed files.</p>
-          <pre><code>~/.claude/project-path/memory/
-  MEMORY.md                   → index (under 200 lines)
-  plan-phases.md              → 9-phase implementation plan
+          <p>Claude Code loads <code>MEMORY.md</code> into every conversation. It's where you store architecture decisions, infrastructure notes, coding conventions, project phases. The problem: everything past 200 lines gets truncated. The more context you add, the more the oldest entries disappear. Claude forgets previous decisions and you end up repeating yourself.</p>
+          <h4>The fix: indexed topic files</h4>
+          <p>Instead of one massive file, restructure your memory into a lean index and separate topic files:</p>
+          <pre><code>memory/
+  MEMORY.md                   → index (~30 lines)
   architecture-decisions.md
   docker-infra.md
+  plan-phases.md
+  debugging-notes.md
   deferred-items.md</code></pre>
-          <p>Claude loads the index every time, then reads topic files only when relevant. No truncation, no wasted context.</p>
+          <p>The index stays under 200 lines and serves as a table of contents. Each topic file holds the real detail. Claude loads the index every time, then reads the relevant topic files based on what you're working on. Nothing gets truncated, nothing gets lost.</p>
           <h4>Why this works</h4>
-          <p>Same idea as <code>.claude/agents/</code>. A small markdown file that gives Claude exactly what it needs. <strong>Structure > bulk.</strong> The index tells Claude what exists and where to find it. The topic files hold the real detail (architecture decisions, infrastructure notes, deferred work) without competing for those 200 lines.</p>
-          <h4>Get started</h4>
-          <p>Just ask Claude: <em>"Break my MEMORY.md into topic files. Keep the main file as an index under 200 lines, and move detailed sections into separate .md files in the same memory directory."</em></p>
+          <p>It mirrors the <code>.claude/agents/</code> pattern: a small file gives Claude direction while detailed files remain accessible on demand. Short, stable preferences like "always use bun" or "never auto-commit" stay in the index itself. Everything else lives in its own file.</p>
+          <h4>Tips</h4>
+          <ul>
+            <li>Keep the index under 100 lines when possible</li>
+            <li>Use descriptive file names, not generic labels</li>
+            <li>Aim for 5 to 10 topic files maximum</li>
+            <li>Periodically review and remove outdated notes</li>
+          </ul>
+          <h4>Getting started</h4>
+          <p>You don't even have to do it manually. Just ask Claude: "Break my MEMORY.md into topic files. Keep the main file as an index under 200 lines, and move detailed sections into separate .md files in the same memory directory." It'll handle the restructuring for you.</p>
+          <p>Structure beats bulk. I wrote more about this on <a href="https://dev.to/jadessoriano/memorymd-doesnt-scale-heres-what-does-34ic" target="_blank" rel="noopener">dev.to</a>.</p>
         </template>
       </li>
 
